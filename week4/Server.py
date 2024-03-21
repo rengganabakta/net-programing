@@ -13,11 +13,14 @@ client_socket, client_address = server_socket.accept()
 
 data = client_socket.recv(1024)
 
-angka = str(data.decode())
+angka = int(data.decode())
 print("Request dari client :", angka, "IP client :", client_address)
 
-message_length = len(data.decode())
-response = f"Jumlah karakter pesan: {message_length}"
+if angka % 2 == 0:
+    response = "angka " + str(angka) + " merupakan genap"
+else:
+    response = "angka " + str(angka) + " merupakan ganjil"
+
 client_socket.sendall(response.encode())
 
 client_socket.close()
